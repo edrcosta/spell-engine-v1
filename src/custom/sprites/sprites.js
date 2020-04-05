@@ -1,0 +1,7 @@
+let bitmaps = {
+    ground : false,
+};
+
+
+
+

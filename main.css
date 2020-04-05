@@ -1,0 +1,18 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    background: #000;
+}
+
+#game{
+    background: #000;
+    margin: 0 auto;
+    border: 1em solid #fff;
+    width: 720px;
+    height: 720px;
+}
