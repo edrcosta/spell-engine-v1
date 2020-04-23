@@ -1,14 +1,11 @@
-/**
- * Interact with canvas 
- */
 class Canvas{
     
     context = null;
     canvas = null;
 
-    constructor(context, canvas){
-        this.context = context;
-        this.canvas = canvas;
+    constructor(id){
+        this.canvas = document.getElementById(id);
+        this.context = this.canvas.getContext('2d');
         this.scale();
     }
     
