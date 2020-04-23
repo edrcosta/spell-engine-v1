@@ -2,8 +2,8 @@ class Pixel{
 
     context;
     pixelSize = 10;
-    renderClockCount = 0;
     bitmapList =  {};
+    backgrounColor = '#000';
 
     constructor(context){
         this.context = context;
@@ -15,11 +15,12 @@ class Pixel{
         this.bitmap = [];
 
         for (let i = 0; i <= 71; i++) {
-            this.bitmap.push(Array(71).fill(false));            
+            this.bitmap.push(Array(71).fill(this.backgrounColor));            
         }
     }
 
     drawPixel = (x, y, color) => {
+        
         x = this.pixelSize * x;
         y = this.pixelSize * y;
 
@@ -33,27 +34,27 @@ class Pixel{
         this.bitmapList[id] = { bitmap : bitmap, x : x, y : y };
     }
 
-    sumBitmapLayers = () => {
+    mergeBitmapLayers = () => {
         Object.keys(this.bitmapList).forEach((id) => {
 
             const element = this.bitmapList[id];
 
             element.bitmap.forEach((row, x) => {
-                row.forEach((col, y) => {
-                    this.bitmap[x + element.x][y + element.y] = col;
+                row.forEach((pixelVal, y) => {
+                    this.bitmap[x + element.x][y + element.y] = pixelVal;
                 });
             });
         });
     }
 
     render = () => {
-        this.clearBitmap();
 
-        this.sumBitmapLayers();
+        this.clearBitmap();
+        this.mergeBitmapLayers();
 
         this.bitmap.forEach((row, x) => {
             row.forEach((pixel, y) => {
-                if(pixel) this.drawPixel(y, x, '#fff');
+                if(pixel) this.drawPixel(y, x, pixel);
             });
         });
     }

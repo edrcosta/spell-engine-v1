@@ -9,13 +9,12 @@ class Canvas{
         this.scale();
     }
     
-    //scaling the canvas to keep a decent resolution
     scale = () => {
         this.context.scale(2,2);
 
-        //set a fix size 
         this.canvas.width = 720;
         this.canvas.height = 720;
+
         this.canvas.style.width = "720px";
         this.canvas.style.height = "720px";
     }
