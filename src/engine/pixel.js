@@ -3,20 +3,29 @@ class Pixel{
     context;
     pixelSize = 10;
     bitmapList =  {};
-    backgrounColor = '#000';
+    bitmap = [];
+    emptyBitmap = [];
 
     constructor(context){
-        this.context = context;
+        this.context = context;        
+        this.initBitmap();
+    }
+
+    initBitmap = () => {
         
-        this.clearBitmap();
+        let newEmptyBitmap = [];
+
+        for (let i = 0; i <= 71; i++) {
+            newEmptyBitmap.push(Array(71).fill(false));            
+        }
+
+        this.emptyBitmap = newEmptyBitmap;
+        this.bitmap = newEmptyBitmap;
     }
 
     clearBitmap = () => {
-        this.bitmap = [];
-
-        for (let i = 0; i <= 71; i++) {
-            this.bitmap.push(Array(71).fill(this.backgrounColor));            
-        }
+        let empty = this.emptyBitmap;
+        this.bitmap = empty;
     }
 
     drawPixel = (x, y, color) => {
@@ -30,31 +39,29 @@ class Pixel{
         this.context.fillRect(x, y, this.pixelSize, this.pixelSize);    
     }
     
-    createElement = (id, bitmap, x, y) => {
-        this.bitmapList[id] = { bitmap : bitmap, x : x, y : y };
+    moveElement = (id, x, y) => {
+        this.bitmapList[id].x = x;
+        this.bitmapList[id].y = y;
     }
 
-    mergeBitmapLayers = () => {
-        Object.keys(this.bitmapList).forEach((id) => {
-
-            const element = this.bitmapList[id];
-
-            element.bitmap.forEach((row, x) => {
-                row.forEach((pixelVal, y) => {
-                    this.bitmap[x + element.x][y + element.y] = pixelVal;
-                });
-            });
-        });
+    createElement = (id, bitmap) => {
+        this.bitmapList[id] = { bitmap : bitmap, x : 0, y : 0 };
     }
 
     render = () => {
 
         this.clearBitmap();
-        this.mergeBitmapLayers();
 
-        this.bitmap.forEach((row, x) => {
-            row.forEach((pixel, y) => {
-                if(pixel) this.drawPixel(y, x, pixel);
+        Object.keys(this.bitmapList).forEach((id) => {
+
+            const element = this.bitmapList[id];
+
+            element.bitmap.forEach((bitmapRow, x) => {
+                bitmapRow.forEach((pixel, y) => {
+                    if(pixel !== false) {
+                        this.drawPixel(y + element.y, x + element.x, pixel);
+                    }
+                });
             });
         });
     }
