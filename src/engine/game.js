@@ -19,14 +19,15 @@ class Game {
 
     //start multi key keypress detection 
     keyboardDetection = () => {
-        
-        //Key press mapping
+
+        // multiple keboard detection in JS is harder than looks so.. 
         let listener = new window.keypress.Listener();
 
         listener.counting_combo("left", () => {  this.keyPress.left = true });
         listener.counting_combo("right", () => { this.keyPress.right = true });
         listener.counting_combo("up", () => { this.keyPress.up = true });
         listener.counting_combo("down", () => { this.keyPress.down = true });
+        //event the library has problens with the "diagonal"
         listener.counting_combo("left up", () => { this.keyPress.left = true; this.keyPress.up = true });
         listener.counting_combo("up right", () => { this.keyPress.right = true; this.keyPress.up = true });
     }

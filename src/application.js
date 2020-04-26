@@ -13,11 +13,11 @@ pixel.create('plataform', sprites.plataform.get());
 pixel.create('ship', sprites.ship.get(), 1);
 
 // store animation positions
-let position = { ship : 63, plataform : 60 }
+let position = { ship : 63, plataform : 60 };
 
 game.setGameLoop(() => {
     pixel.move('plataform', position.plataform, 0);
-    pixel.move('ship', position.ship, 10);
+    pixel.move('ship', position.ship, 10); 
 });
 
 game.loopStart();
