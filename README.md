@@ -18,3 +18,14 @@ grunt https://gruntjs.com/
 
 `npm intall`
 `grunt build`
+
+## How it works and why? 
+
+### Game loop 
+
+the easy way to create a animation is change frame by frame as recomended by canvas API documentation:
+
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations
+
+### bitmaping rendering
+

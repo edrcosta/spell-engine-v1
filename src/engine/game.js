@@ -1,6 +1,7 @@
 class Game {
     
     gameLoopCallback;
+    gameLoopCount = 0;
     canvas;
     pixel;
     halt = false;
@@ -48,6 +49,7 @@ class Game {
                 game.resetKeyboard();
                 game.canvas.clear();
                 game.pixel.render();
+                game.gameLoopCount++;
             }
 
         }, this.clockSpeed, this);
