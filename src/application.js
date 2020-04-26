@@ -71,7 +71,9 @@ game.keyboardDetection();
 setInterval(() => {
 
     console.log(game.keyPress);
+    
     game.resetKeyboard();
+
     pixel.move('plataform', positions.plataform, 0);
     pixel.move('ship', positions.ship, 10);
 

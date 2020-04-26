@@ -18,4 +18,6 @@ class Game {
         listener.counting_combo("left up", () => { this.keyPress.left = true; this.keyPress.up = true });
         listener.counting_combo("up right", () => { this.keyPress.right = true; this.keyPress.up = true });
     }
+
+    
 }
