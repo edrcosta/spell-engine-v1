@@ -12,10 +12,12 @@ class Game {
         this.pixel = pixel;
     }
 
+    //reset keypress values    
     resetKeyboard = () => {
         this.keyPress = { left : false, up : false, down : false, right : false };
     }
 
+    //start multi key keypress detection 
     keyboardDetection = () => {
         
         //Key press mapping
