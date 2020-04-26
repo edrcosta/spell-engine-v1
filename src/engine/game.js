@@ -1,6 +1,16 @@
 class Game {
-
+    
+    gameLoopCallback;
+    canvas;
+    pixel;
+    halt = false;
+    clockSpeed = 100;
     keyPress = { left : false, up : false, down : false, right : false };
+
+    constructor(canvas, pixel){
+        this.canvas = canvas;
+        this.pixel = pixel;
+    }
 
     resetKeyboard = () => {
         this.keyPress = { left : false, up : false, down : false, right : false };
@@ -19,5 +29,25 @@ class Game {
         listener.counting_combo("up right", () => { this.keyPress.right = true; this.keyPress.up = true });
     }
 
-    
+    //set a game loop callback
+    setGameLoop = (callback) => {
+        this.gameLoopCallback = callback;
+    }
+
+    loopStart = () => {
+        this.gameLoop = setInterval((game) => {
+
+            if(!game.halt){                
+                game.gameLoopCallback();
+                game.resetKeyboard();
+                game.canvas.clear();
+                game.pixel.render();
+            }
+
+        }, this.clockSpeed, this);
+    }
+
+    pause = () => { this.halt = true }
+
+    start = () => { this.halt = false }
 }

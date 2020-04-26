@@ -1,6 +1,6 @@
 let canvas = new Canvas('game');
 let pixel = new Pixel(canvas.context);
-let game = new Game();
+let game = new Game(canvas, pixel);
 
 // Create sprites 
 
@@ -68,21 +68,17 @@ for (let i = 0; i < 20; i++) {
 
 game.keyboardDetection();
 
-setInterval(() => {
-
-    console.log(game.keyPress);
+// console.log(game.keyPress);
     
-    game.resetKeyboard();
+game.setGameLoop(() => {
 
     pixel.move('plataform', positions.plataform, 0);
     pixel.move('ship', positions.ship, 10);
 
     positions.plataform++;
-    if(positions.ship > 50){
-        positions.ship--;
-    }
+    if(positions.ship > 50) positions.ship--;
 
-    canvas.clear();
-    pixel.render();
+});
 
-}, 100);
+game.loopStart();
+game.start();
