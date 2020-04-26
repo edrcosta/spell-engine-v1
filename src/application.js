@@ -66,10 +66,12 @@ for (let i = 0; i < 20; i++) {
     pixel.move('tree' + i, positions.plataform - randX, randY);
 }
 
-// game.keyboardDetection();
+game.keyboardDetection();
 
 setInterval(() => {
-    
+
+    console.log(game.keyPress);
+    game.resetKeyboard();
     pixel.move('plataform', positions.plataform, 0);
     pixel.move('ship', positions.ship, 10);
 

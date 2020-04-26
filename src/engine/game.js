@@ -1,6 +1,10 @@
 class Game {
 
-    keyPress = { left : false, up : false, down : false, right : false }
+    keyPress = { left : false, up : false, down : false, right : false };
+
+    resetKeyboard = () => {
+        this.keyPress = { left : false, up : false, down : false, right : false };
+    }
 
     keyboardDetection = () => {
         
