@@ -37,6 +37,9 @@ class Game {
     }
 
     loopStart = () => {
+        
+        this.keyboardDetection();
+ 
         this.gameLoop = setInterval((game) => {
 
             if(!game.halt){                
