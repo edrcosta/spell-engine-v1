@@ -1,11 +1,16 @@
+/**
+ * this is custom game 
+ */
+
+ //instancing the "engine" kkk
 let canvas = new Canvas('game');
 let pixel = new Pixel(canvas.context);
 let game = new Game(canvas, pixel);
 
 // Create sprites 
 let sprites = {
-    plataform : new Sprite(rawSprite.plataform, ['grey']),
-    ship : new Sprite(rawSprite.ship, [ '#000', 'white', 'blue', 'grey' ]),
+    plataform : new Sprite(rawSprite.plataform, rawSprite.plataformColors),
+    ship : new Sprite(rawSprite.ship, rawSprite.shipColors),
 };
 
 // create elements 
@@ -15,28 +20,27 @@ pixel.create('ship', sprites.ship.get(), 1);
 // store animation positions
 let position = { ship : 63, plataform : 60 };
 
-//This executes every game clock cicle 
-//the ideia is modify an bitmap in memory 
-//the game "happends" on memory inside a simbolic array world
-//that way we gain superpowers and be able to really manipulate pixel by pixel 
-//using complex logic to create shadows etc...
+let world_left = 0;
 
 game.setGameLoop(() => {
-
     if(game.gameLoopCount === 0){
         pixel.move('plataform', position.plataform, 0);
         pixel.move('ship', position.ship, 10);    
     }else{
+        
+        pixel.move('plataform', position.plataform, world_left--);
 
         if(game.keyPress.up){
-            pixel.move('ship', position.ship--, 10);
+            pixel.move('ship', position.ship-=3, 10);
         }
-        
+
+        if(position.ship < 63){
+            pixel.move('ship', position.ship++, 10);
+        }
     }
-    
-    
-    console.log(); 
 });
 
+//lets start our loop
 game.loopStart();
+//start the game latter this will load user data
 game.start();

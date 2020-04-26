@@ -21,6 +21,20 @@ grunt https://gruntjs.com/
 
 ## How it works and why? 
 
+1 - Bitmap are loaded in memory
+    
+    bitmap as the name say is jut a "bit map of your screen
+
+    at start i think in really use bitmap patterns and i will (some day i hope), but we are in a browser so any "css valid color" is accepted #000 or white.. but is very hard to visualize an array as 
+
+    [
+        []
+    ]
+
+    
+
+2 - 
+
 ### Game loop 
 
 the easy way to create a animation is change frame by frame as recomended by canvas API documentation:
