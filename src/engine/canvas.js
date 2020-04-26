@@ -4,11 +4,14 @@ class Canvas{
     canvas = null;
 
     constructor(id){
+
         this.canvas = document.getElementById(id);
         this.context = this.canvas.getContext('2d');
+
         this.scale();
     }
     
+    //set canvas size
     scale = () => {
         this.context.scale(2,2);
 
@@ -19,6 +22,7 @@ class Canvas{
         this.canvas.style.height = "720px";
     }
 
+    //clear all data
     clear = () => {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
