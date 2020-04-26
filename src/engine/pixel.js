@@ -8,26 +8,28 @@ class Pixel{
 
     constructor(context){
         this.context = context;        
-        this.initBitmap();
+        this.initializeBitmap();
     }
 
-    initBitmap = () => {
+    //Create a bitmap empty array
+    initializeBitmap = () => {
         
-        let newEmptyBitmap = [];
-
+        let emptyBimapArray = [];
         for (let i = 0; i <= 71; i++) {
-            newEmptyBitmap.push(Array(71).fill(false));            
+            emptyBimapArray.push(Array(71).fill(false));            
         }
 
-        this.emptyBitmap = newEmptyBitmap;
-        this.bitmap = newEmptyBitmap;
+        this.emptyBitmap = emptyBimapArray;
+        this.bitmap = emptyBimapArray;
     }
 
+    //clear the entire canvas
     clearBitmap = () => {
         let empty = this.emptyBitmap;
         this.bitmap = empty;
     }
 
+    //Draw a single pixel 
     drawPixel = (x, y, color) => {
         
         x = this.pixelSize * x;
@@ -39,15 +41,18 @@ class Pixel{
         this.context.fillRect(x, y, this.pixelSize, this.pixelSize);    
     }
     
-    moveElement = (id, x, y) => {
+    //move a sprite element 
+    move = (id, x, y) => {
         this.bitmapList[id].x = x;
         this.bitmapList[id].y = y;
     }
 
-    createElement = (id, bitmap) => {
-        this.bitmapList[id] = { bitmap : bitmap, x : 0, y : 0 };
+    //create a new sprite element
+    create = (id, bitmap) => {
+        this.bitmapList[id] = { bitmap : bitmap };
     }
 
+    //render one frame on screen
     render = () => {
 
         this.clearBitmap();

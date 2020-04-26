@@ -3,11 +3,8 @@ class Sprite{
     bitmap;
     colors;
     
-    constructor(bitmap){
+    constructor(bitmap, colors){
         this.bitmap = bitmap;
-    }
-
-    addColorPallet(colors){
         this.colors = colors;
     }
 
