@@ -2,12 +2,15 @@ class Pixel{
 
     context;
     pixelSize = 10;
-    bitmapList =  {};
+    userview = 0;
+    spriteList =  {};
     bitmap = [];
     emptyBitmap = [];
 
-    constructor(context){
-        this.context = context;        
+    constructor(canvas){
+        this.context = canvas.context;        
+        this.canvas = canvas;        
+    
         this.initializeBitmap();
     }
 
@@ -43,13 +46,33 @@ class Pixel{
     
     //move a sprite element 
     move = (id, x, y) => {
-        this.bitmapList[id].x = x;
-        this.bitmapList[id].y = y;
+        this.spriteList[id].x = x;
+        this.spriteList[id].y = y;
     }
 
     //create a new sprite element
-    create = (id, bitmap) => {
-        this.bitmapList[id] = { bitmap : bitmap };
+    create = (id, sprite) => {
+        this.spriteList[id] = { sprite : sprite };
+    }
+    
+    moveUserView = (x, y) => {
+        this.userview = { x : x, y : y };
+    }
+    
+    //map sprites by id and create the x and y coords
+    loadSprites = (spriteList) => {
+        
+        let spriteListById = {};
+
+        Object.keys(spriteList).forEach(key => {
+            spriteListById[key] = {
+                x : 0,
+                y : 0,
+                object : new Sprite(spriteList[key].frames, spriteList[key].colors)
+            };
+        });
+
+        this.spriteList = spriteListById;
     }
 
     //render one frame on screen
@@ -57,13 +80,18 @@ class Pixel{
 
         this.clearBitmap();
 
-        Object.keys(this.bitmapList).forEach((id) => {
+        Object.keys(this.spriteList).forEach((id) => {
 
-            const element = this.bitmapList[id];
+            const element = this.spriteList[id];
 
-            element.bitmap.forEach((bitmapRow, x) => {
-                bitmapRow.forEach((pixel, y) => {
-                    if(pixel !== false) {
+            const sprite = element.object.get(0,0, 0);
+            
+            sprite.forEach((row, x) => {                
+                row.forEach((pixel, y) => {
+
+                    const presentOnScreen = typeof this.bitmap[x][y] !== 'undefined';
+
+                    if(pixel !== false && presentOnScreen) {
                         this.drawPixel(y + element.y, x + element.x, pixel);
                     }
                 });

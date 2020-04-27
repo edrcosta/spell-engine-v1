@@ -56,6 +56,5 @@ class Game {
     }
 
     pause = () => { this.halt = true }
-
     start = () => { this.halt = false }
 }
