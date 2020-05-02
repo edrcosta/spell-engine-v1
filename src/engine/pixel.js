@@ -55,6 +55,7 @@ class Pixel{
         this.spriteList[id] = { sprite : sprite };
     }
     
+    //this will move the user 'screen area' 
     moveUserView = (x, y) => {
         this.userview = { x : x, y : y };
     }
@@ -74,28 +75,54 @@ class Pixel{
 
         this.spriteList = spriteListById;
     }
+    
+    //run by an array of arrays and apply a calback on each value 
+    runByArrayOfArrays = (arr, callback) => {
+        arr.forEach((row, x) => {
+            row.forEach((value, y) => { callback(x, y, value) });
+        });
+    }
+    
+    isOnUserView = (x, y) => {
+        // const isOnUserView = typeof this.bitmap[x][y] !== 'undefined';
+        return true;
+    }
 
-    //render one frame on screen
+    renderSprite = (spriteId) => {
+
+        const sprite = this.spriteList[spriteId];
+
+        this.runByArrayOfArrays(sprite.object.get(0,0, 0), (x, y, pixelValue) => {
+            if(pixelValue !== false && this.isOnUserView(x, y)) {
+                this.drawPixel(y + sprite.y, x + sprite.x, pixelValue);
+            }
+        });
+    }
+
+    countClones = (id) => {
+        
+        let count = 0;
+        
+        Object.keys(this.spriteList).filter((value) => {
+            if(value.split('=Element===')[0] === id) count++;
+        });
+
+        return count;
+    }
+
+    cloneSprite = (id, x, y) => {
+
+        // this.spriteList[id + 'asd'] = this.spriteList[id]
+        
+        console.log();
+    }
+
     render = () => {
-
+    
         this.clearBitmap();
-
-        Object.keys(this.spriteList).forEach((id) => {
-
-            const element = this.spriteList[id];
-
-            const sprite = element.object.get(0,0, 0);
-            
-            sprite.forEach((row, x) => {                
-                row.forEach((pixel, y) => {
-
-                    const presentOnScreen = typeof this.bitmap[x][y] !== 'undefined';
-
-                    if(pixel !== false && presentOnScreen) {
-                        this.drawPixel(y + element.y, x + element.x, pixel);
-                    }
-                });
-            });
+        
+        Object.keys(this.spriteList).forEach((key) => {
+            this.renderSprite(key);
         });
     }
 }
