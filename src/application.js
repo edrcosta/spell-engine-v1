@@ -24,9 +24,6 @@ game.setGameLoop(() => {
         if(firstPeace){
             pixel.move('cube', positionTop, positionLeft);
         }else{
-
-            
-
             pixel.move(peaces[peaces.length - 1], positionTop, positionLeft);
         }
     }else{

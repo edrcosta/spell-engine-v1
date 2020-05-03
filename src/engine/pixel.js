@@ -41,23 +41,26 @@ class Pixel{
         this.context.fillStyle = color;
 
         this.context.fillRect(x, y, this.pixelSize, this.pixelSize);
-        this.context.fillRect(x, y, this.pixelSize, this.pixelSize);    
+        this.context.fillRect(x, y, this.pixelSize, this.pixelSize);
     }
     
     //move a sprite element 
     move = (id, x, y) => {
         this.spriteList[id].x = x;
         this.spriteList[id].y = y;
+        return [x, y];
     }
 
     //create a new sprite element
     create = (id, sprite) => {
         this.spriteList[id] = { sprite : sprite };
+        return this.spriteList[id];
     }
     
     //this will move the user 'screen area' 
     moveUserView = (x, y) => {
         this.userview = { x : x, y : y };
+        return this.userview;
     }
     
     //map sprites by id and create the x and y coords
@@ -76,6 +79,8 @@ class Pixel{
         });
 
         this.spriteList = spriteListById;
+        
+        return this.spriteList;
     }
     
     //run by an array of arrays and apply a calback on each value 
