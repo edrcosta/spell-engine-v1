@@ -62,6 +62,17 @@ class Pixel{
         this.userview = { x : x, y : y };
         return this.userview;
     }
+
+    createNewSpriteObject = (colors, frames) => {
+        return {
+            x : 0,
+            y : 0,
+            show : false,
+            colors : colors,
+            frames : frames,
+            object : new Sprite(frames, colors)
+        }
+    }
     
     //map sprites by id and create the x and y coords
     loadSprites = (spriteList) => {
@@ -69,13 +80,7 @@ class Pixel{
         let spriteListById = {};
 
         Object.keys(spriteList).forEach(key => {
-            spriteListById[key] = {
-                x : 0,
-                y : 0,
-                colors : spriteList[key].colors,
-                frames : spriteList[key].frames,
-                object : new Sprite(spriteList[key].frames, spriteList[key].colors)
-            };
+            spriteListById[key] = this.createNewSpriteObject(spriteList[key].colors, spriteList[key].frames);
         });
 
         this.spriteList = spriteListById;
@@ -96,28 +101,44 @@ class Pixel{
         return true;
     }
 
+    //hide a single sprite by id 
+    hideSprite = (spriteId) => {
+        
+        const sprite = this.spriteList[spriteId];
+        
+        if(typeof sprite !== 'undefined') sprite.show = false;
+    }
+
+    //Show a single sprite by id 
+    showSprite = (spriteId) => {
+        
+        const sprite = this.spriteList[spriteId];
+        
+        if(typeof sprite !== 'undefined') sprite.show = true;
+    }
+
     //Render a single sprite frame 
     renderSprite = (spriteId) => {
-
+        
         const sprite = this.spriteList[spriteId];
 
-        this.runByArrayOfArrays(sprite.object.get(0,0, 0), (x, y, pixelValue) => {
-            if(pixelValue !== false && this.isOnUserView(x, y)) {
-                this.drawPixel(y + sprite.y, x + sprite.x, pixelValue);
-            }
-        });
+        if(sprite.show){
+            this.runByArrayOfArrays(sprite.object.get(0,0, 0), (x, y, pixelValue) => {
+                if(pixelValue !== false && this.isOnUserView(x, y)) {
+                    this.drawPixel(y + sprite.y, x + sprite.x, pixelValue);
+                }
+            });
+        }
     }
     
     //Duplicate a sprite object 
     cloneSprite = (id, x, y) => {
 
+        if(typeof this.spriteList[id] === 'undefined') return false;
+
         let cloneCount = Object.keys(this.spriteList).length + 1;
 
-        this.spriteList[`id-${cloneCount}`] = {
-            x : y,
-            y : x,
-            object : new Sprite(this.spriteList[id].frames, this.spriteList[id].colors)
-        };
+        this.spriteList[`id-${cloneCount}`] = this.createNewSpriteObject(this.spriteList[id].colors, this.spriteList[id].frames);
 
         return `id-${cloneCount}`;
     }

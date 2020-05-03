@@ -4,6 +4,7 @@ let game = new Game(canvas, pixel);
 
 pixel.loadSprites({
     cube : { frames : [rawSprites.cube], colors : rawSprites.cubeColors},
+    bar : { frames : [rawSprites.bar], colors : rawSprites.barColors},
     screen : { frames : [rawSprites.screen], colors : rawSprites.screenColors},
 });
 
@@ -11,10 +12,12 @@ let positionTop = 0;
 let positionLeft = 34;
 let firstPeace = true;
 let peaces = [];
+let peacesIds =['cube', 'bar'];
 
 pixel.move('screen', 70, 10);
 
 game.clockSpeed = 200;
+pixel.showSprite('screen');
 
 game.setGameLoop(() => {
 
@@ -22,15 +25,20 @@ game.setGameLoop(() => {
 
     if(positionTop <= 60){
         if(firstPeace){
+            pixel.showSprite('cube');
             pixel.move('cube', positionTop, positionLeft);
         }else{
+            pixel.showSprite(peaces[peaces.length - 1]);
             pixel.move(peaces[peaces.length - 1], positionTop, positionLeft);
         }
     }else{
         firstPeace = false;
         positionTop = 0;
 
-        peaces.push(pixel.cloneSprite('cube', 10, 10));
+        var item = peacesIds[Math.floor(Math.random() * peacesIds.length)];
+
+
+        peaces.push(pixel.cloneSprite(item, 10, 10));
     }
         
     if(game.keyPress.left) positionLeft-=4;
