@@ -85,11 +85,13 @@ class Pixel{
         });
     }
     
+    //Check if an element is present on screen
     isOnUserView = (x, y) => {
         // const isOnUserView = typeof this.bitmap[x][y] !== 'undefined';
         return true;
     }
 
+    //Render a single sprite frame 
     renderSprite = (spriteId) => {
 
         const sprite = this.spriteList[spriteId];
@@ -101,6 +103,7 @@ class Pixel{
         });
     }
     
+    //Duplicate a sprite object 
     cloneSprite = (id, x, y) => {
 
         let cloneCount = Object.keys(this.spriteList).length + 1;
