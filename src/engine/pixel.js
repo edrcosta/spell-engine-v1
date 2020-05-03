@@ -62,17 +62,6 @@ class Pixel{
         this.userview = { x : x, y : y };
         return this.userview;
     }
-
-    createNewSpriteObject = (colors, frames) => {
-        return {
-            x : 0,
-            y : 0,
-            show : false,
-            colors : colors,
-            frames : frames,
-            object : new Sprite(frames, colors)
-        }
-    }
     
     //map sprites by id and create the x and y coords
     loadSprites = (spriteList) => {
@@ -80,7 +69,7 @@ class Pixel{
         let spriteListById = {};
 
         Object.keys(spriteList).forEach(key => {
-            spriteListById[key] = this.createNewSpriteObject(spriteList[key].colors, spriteList[key].frames);
+            spriteListById[key] = new Sprite(spriteList[key].frames, spriteList[key].colors, false, 0, 0) 
         });
 
         this.spriteList = spriteListById;
@@ -123,7 +112,7 @@ class Pixel{
         const sprite = this.spriteList[spriteId];
 
         if(sprite.show){
-            this.runByArrayOfArrays(sprite.object.get(0,0, 0), (x, y, pixelValue) => {
+            this.runByArrayOfArrays(sprite.get(0,0, 0), (x, y, pixelValue) => {
                 if(pixelValue !== false && this.isOnUserView(x, y)) {
                     this.drawPixel(y + sprite.y, x + sprite.x, pixelValue);
                 }
@@ -138,7 +127,7 @@ class Pixel{
 
         let cloneCount = Object.keys(this.spriteList).length + 1;
 
-        this.spriteList[`id-${cloneCount}`] = this.createNewSpriteObject(this.spriteList[id].colors, this.spriteList[id].frames);
+        this.spriteList[`id-${cloneCount}`] = new Sprite(spriteList[key].frames, spriteList[key].colors, false, 0, 0) 
 
         return `id-${cloneCount}`;
     }

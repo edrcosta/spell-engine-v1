@@ -2,8 +2,14 @@ class Sprite{
 
     frames;
     colors;
-    
-    constructor(frames, colors){
+    show = false;    
+    x = 0;
+    y = 0;
+
+    constructor(frames, colors, show, x, y){
+        this.x = x;
+        this.y = y;
+        this.show = show;
         this.frames = frames;   
         this.colors = colors;
     }
