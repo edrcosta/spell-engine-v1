@@ -11,7 +11,7 @@ rawSprites.weirdPeace = [
     [0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1],
 ];
 
-rawSprites.weirdPeaceColors = ['transparent', 'red'];
+rawSprites.weirdPeaceColors = ['transparent', 'blue'];
 
 // Bar 
 rawSprites.t = [
@@ -24,7 +24,7 @@ rawSprites.t = [
     [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1],
 ];
 
-rawSprites.tColors = ['transparent', 'red'];
+rawSprites.tColors = ['transparent', 'green'];
 
 // Bar 
 rawSprites.l = [
@@ -41,7 +41,7 @@ rawSprites.l = [
     [1, 1, 1, 0, 1, 1, 1],
 ];
 
-rawSprites.lColors = ['transparent', 'red'];
+rawSprites.lColors = ['transparent', 'yellow'];
 
 
 // Bar 
@@ -63,7 +63,7 @@ rawSprites.bar = [
     [1, 1, 1 ],
 ];
 
-rawSprites.barColors = ['transparent', 'red'];
+rawSprites.barColors = ['transparent', 'grey'];
 
 // Cube 
 rawSprites.cube = [
