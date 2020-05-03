@@ -132,6 +132,7 @@ class Pixel{
         return `id-${cloneCount}`;
     }
 
+    //join all sprites and render it pixel by pixel
     render = () => {
     
         this.clearBitmap();
