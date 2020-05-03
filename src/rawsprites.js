@@ -1,5 +1,49 @@
 let rawSprites = {};
 
+// wtf how i call it? 
+rawSprites.weirdPeace = [
+    [1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1],
+    [0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1],
+    [0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1],
+];
+
+rawSprites.weirdPeaceColors = ['transparent', 'red'];
+
+// Bar 
+rawSprites.t = [
+    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1],
+    [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1],
+    [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1],
+];
+
+rawSprites.tColors = ['transparent', 'red'];
+
+// Bar 
+rawSprites.l = [
+    [1, 1, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 0, 1, 1, 1],
+    [1, 1, 1, 0, 1, 1, 1],
+    [1, 1, 1, 0, 1, 1, 1],
+];
+
+rawSprites.lColors = ['transparent', 'red'];
+
+
 // Bar 
 rawSprites.bar = [
     [1, 1, 1 ],
@@ -19,7 +63,7 @@ rawSprites.bar = [
     [1, 1, 1 ],
 ];
 
-rawSprites.barColors = ['#000', 'red'];
+rawSprites.barColors = ['transparent', 'red'];
 
 // Cube 
 rawSprites.cube = [
@@ -32,11 +76,11 @@ rawSprites.cube = [
     [1, 1, 1, 0, 1, 1, 1],
 ];
 
-rawSprites.cubeColors = ['#000', 'red'];
+rawSprites.cubeColors = ['transparent', 'red'];
 
 // Screen line 
 rawSprites.screen = [
     Array(60).fill(2),    
 ];
 
-rawSprites.screenColors = ['#000', 'red'];
+rawSprites.screenColors = ['transparent', 'red'];
