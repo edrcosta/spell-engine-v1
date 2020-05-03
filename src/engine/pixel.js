@@ -69,6 +69,8 @@ class Pixel{
             spriteListById[key] = {
                 x : 0,
                 y : 0,
+                colors : spriteList[key].colors,
+                frames : spriteList[key].frames,
                 object : new Sprite(spriteList[key].frames, spriteList[key].colors)
             };
         });
@@ -98,23 +100,18 @@ class Pixel{
             }
         });
     }
-
-    countClones = (id) => {
-        
-        let count = 0;
-        
-        Object.keys(this.spriteList).filter((value) => {
-            if(value.split('=Element===')[0] === id) count++;
-        });
-
-        return count;
-    }
-
+    
     cloneSprite = (id, x, y) => {
 
-        // this.spriteList[id + 'asd'] = this.spriteList[id]
-        
-        console.log();
+        let cloneCount = Object.keys(this.spriteList).length + 1;
+
+        this.spriteList[`id-${cloneCount}`] = {
+            x : y,
+            y : x,
+            object : new Sprite(this.spriteList[id].frames, this.spriteList[id].colors)
+        };
+
+        return `id-${cloneCount}`;
     }
 
     render = () => {
