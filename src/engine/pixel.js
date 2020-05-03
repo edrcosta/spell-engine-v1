@@ -127,7 +127,7 @@ class Pixel{
 
         let cloneCount = Object.keys(this.spriteList).length + 1;
 
-        this.spriteList[`id-${cloneCount}`] = new Sprite(spriteList[key].frames, spriteList[key].colors, false, 0, 0) 
+        this.spriteList[`id-${cloneCount}`] = new Sprite(this.spriteList[id].frames, this.spriteList[id].colors, false, x, y) 
 
         return `id-${cloneCount}`;
     }
