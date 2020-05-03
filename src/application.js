@@ -1,6 +1,6 @@
 let canvas = new Canvas('game', 800, 800);
 let pixel = new Pixel(canvas);
-let game = new Game(canvas, pixel);
+let game = new Game(canvas, pixel, 200);
 
 pixel.loadSprites({
     cube : { frames : [rawSprites.cube], colors : rawSprites.cubeColors},
@@ -15,8 +15,6 @@ let peaces = [];
 let peacesIds =['cube', 'bar'];
 
 pixel.move('screen', 70, 10);
-
-game.clockSpeed = 200;
 pixel.showSprite('screen');
 
 game.setGameLoop(() => {
@@ -36,7 +34,6 @@ game.setGameLoop(() => {
         positionTop = 0;
 
         var item = peacesIds[Math.floor(Math.random() * peacesIds.length)];
-
 
         peaces.push(pixel.cloneSprite(item, 10, 10));
     }

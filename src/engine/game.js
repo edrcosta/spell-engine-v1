@@ -8,9 +8,10 @@ class Game {
     clockSpeed = 100;
     keyPress = { left : false, up : false, down : false, right : false };
 
-    constructor(canvas, pixel){
+    constructor(canvas, pixel, clockSpeed){
         this.canvas = canvas;
         this.pixel = pixel;
+        this.clockSpeed = clockSpeed
     }
 
     //reset keypress values    
