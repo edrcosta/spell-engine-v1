@@ -84,10 +84,13 @@ class Pixel{
         });
     }
     
-    //Check if an element is present on screen
+    //Check if an element is present on screen this is called raytracing
     isOnUserView = (x, y) => {
-        // const isOnUserView = typeof this.bitmap[x][y] !== 'undefined';
-        return true;
+
+        if(x <= 71 && y <= 71){
+            return true;
+        }
+        return false;
     }
 
     //hide a single sprite by id 
