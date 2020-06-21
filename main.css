@@ -16,3 +16,11 @@ body{
     width: 720px;
     height: 720px;
 }
+
+select {
+    height: 4em;
+    min-width: 20em;
+}
+button {
+    height: 4em;
+}

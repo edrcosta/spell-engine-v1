@@ -69,7 +69,13 @@ class Pixel{
         let spriteListById = {};
 
         Object.keys(spriteList).forEach(key => {
-            spriteListById[key] = new Sprite(spriteList[key].frames, spriteList[key].colors, false, 0, 0) 
+            spriteListById[key] = new Sprite(
+                spriteList[key].frames, 
+                spriteList[key].colors, 
+                false, 
+                0, 
+                0
+            ) 
         });
 
         this.spriteList = spriteListById;
@@ -103,10 +109,9 @@ class Pixel{
 
     //Show a single sprite by id 
     showSprite = (spriteId) => {
-        
-        const sprite = this.spriteList[spriteId];
-        
-        if(typeof sprite !== 'undefined') sprite.show = true;
+        if(typeof this.spriteList[spriteId] !== 'undefined') {
+            this.spriteList[spriteId].show = true;
+        }
     }
 
     //Render a single sprite frame 
@@ -130,7 +135,13 @@ class Pixel{
 
         let cloneCount = Object.keys(this.spriteList).length + 1;
 
-        this.spriteList[`id-${cloneCount}`] = new Sprite(this.spriteList[id].frames, this.spriteList[id].colors, false, x, y) 
+        this.spriteList[`id-${cloneCount}`] = new Sprite(
+            this.spriteList[id].frames, 
+            this.spriteList[id].colors, 
+            false, 
+            x, 
+            y    
+        );
 
         return `id-${cloneCount}`;
     }
@@ -143,5 +154,10 @@ class Pixel{
         Object.keys(this.spriteList).forEach((key) => {
             this.renderSprite(key);
         });
+    }
+
+    //generate a randon number
+    getRandom = (min, max) => {
+        return Math.random() * (max - min) + min;
     }
 }

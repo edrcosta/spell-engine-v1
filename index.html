@@ -4,16 +4,27 @@
     </head>
 
     <body>       
-        
+
+        <div id="menu">
+            <select id="games-menu">
+                <option value="no-game-selected">Select an game</option>
+            </select>
+            <button id="load-game">Load Game</button>    
+        </div>
+
         <canvas id="game"></canvas>
 
         <script src="src/libs/keypress-2.1.5.min.js"></script>
-        <script src="src/rawsprites.js"></script>
+        
         <script src="src/engine/sprite.js"></script>
         <script src="src/engine/pixel.js"></script>
         <script src="src/engine/player.js"></script>
         <script src="src/engine/game.js"></script>
         <script src="src/engine/canvas.js"></script>
+
+
+        <script src="src/libs/keypress-2.1.5.min.js"></script>
+        <script src="src/game-list.js"></script>    
         <script src="src/application.js"></script>
     </body>
 </html>
