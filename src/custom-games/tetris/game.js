@@ -17,64 +17,50 @@ class TetrisGame
         'l',
         'bar',
     ];
+    
+    sprites = {
+        weirdPeace : { frames : [rawSprites.weirdPeace], colors : rawSprites.weirdPeaceColors},
+        cube : { frames : [rawSprites.cube], colors : rawSprites.cubeColors},
+        t : { frames : [rawSprites.t], colors : rawSprites.tColors},
+        l : { frames : [rawSprites.l], colors : rawSprites.lColors},
+        bar : { frames : [rawSprites.bar], colors : rawSprites.barColors},
+        screen : { frames : [rawSprites.screen], colors : rawSprites.screenColors},
+        screenVertical : { frames : [rawSprites.screenVertical], colors : rawSprites.screenVerticalColors},
+    };
 
     constructor(){
+        
+        //loading engine
         this.canvas = new Canvas('game', 800, 800);
         this.pixel = new Pixel(this.canvas);
         this.game = new Game(this.canvas, this.pixel, 200);
-        this.loadSprites();
-    }
 
-    loadSprites(){
-        this.pixel.loadSprites({
-            weirdPeace : { frames : [rawSprites.weirdPeace], colors : rawSprites.weirdPeaceColors},
-            cube : { frames : [rawSprites.cube], colors : rawSprites.cubeColors},
-            t : { frames : [rawSprites.t], colors : rawSprites.tColors},
-            l : { frames : [rawSprites.l], colors : rawSprites.lColors},
-            bar : { frames : [rawSprites.bar], colors : rawSprites.barColors},
-            screen : { frames : [rawSprites.screen], colors : rawSprites.screenColors},
-        });
+        //loading bitmap sprites into memory 
+        this.pixel.loadSprites(this.sprites);
     }
 
     reset(){
+        //render basic game ui
         this.pixel.move('screen', 70, 10);
         this.pixel.showSprite('screen');
+
+        this.pixel.move('screenVertical', 10, 10);
+        this.pixel.showSprite('screenVertical');
+
+        
     }
 
     getRandPeace = () => this.peacesIds[Math.floor(Math.random() * this.peacesIds.length)]
 
+    gameFrame = () => {
 
-    renderGameFrame = () => {
-        const randStart= this.getRandPeace();
-
-        this.positionTop+= 5;
-
-        if(this.positionTop <= 60){
-            if(this.firstPeace){
-                
-                this.pixel.showSprite(randStart);
-                this.pixel.move(randStart, this.positionTop, this.positionLeft);
-            }else{
-                this.pixel.showSprite(this.peaces[this.peaces.length - 1]);
-                this.pixel.move(this.peaces[this.peaces.length - 1], this.positionTop, this.positionLeft);
-            }
-        }else{
-            this.firstPeace = false;
-            this.positionTop = 0;
-
-            const randPeace = this.peacesIds[Math.floor(Math.random() * this.peacesIds.length)];
-
-            this.peaces.push(this.pixel.cloneSprite(randPeace, 10, 10));
-        }
-            
-        if(this.game.keyPress.left) this.positionLeft-=4;
-        if(this.game.keyPress.right) this.positionLeft+=4;
+        // console.log(this.getRandPeace());
+        this.pixel.showSprite('cube');
+        this.pixel.move('cube', 10, 10);
     }
-    
 
     gameStart = () => {
-        this.game.setGameLoop(this.renderGameFrame);
-
+        this.game.setGameLoop(this.gameFrame);
         this.game.loopStart();
     }
 }
@@ -110,3 +96,29 @@ tetris.gameStart();
 
 
 // const randStart = peacesIds[Math.floor(Math.random() * peacesIds.length)];
+
+
+//  const randStart= this.getRandPeace();
+    
+//             this.positionTop+= 5;
+    
+//             if(this.positionTop <= 60){
+//                 if(this.firstPeace){
+                    
+//                     this.pixel.showSprite(randStart);
+//                     this.pixel.move(randStart, this.positionTop, this.positionLeft);
+//                 }else{
+//                     this.pixel.showSprite(this.peaces[this.peaces.length - 1]);
+//                     this.pixel.move(this.peaces[this.peaces.length - 1], this.positionTop, this.positionLeft);
+//                 }
+//             }else{
+//                 this.firstPeace = false;
+//                 this.positionTop = 0;
+    
+//                 const randPeace = this.peacesIds[Math.floor(Math.random() * this.peacesIds.length)];
+    
+//                 this.peaces.push(this.pixel.cloneSprite(randPeace, 10, 10));
+//             }
+                
+//             if(this.game.keyPress.left) this.positionLeft-=4;
+//             if(this.game.keyPress.right) this.positionLeft+=4;

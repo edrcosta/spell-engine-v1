@@ -43,7 +43,6 @@ rawSprites.l = [
 
 rawSprites.lColors = ['transparent', 'yellow'];
 
-
 // Bar 
 rawSprites.bar = [
     [1, 1, 1 ],
@@ -80,7 +79,15 @@ rawSprites.cubeColors = ['transparent', 'red'];
 
 // Screen line 
 rawSprites.screen = [
-    Array(60).fill(2),    
+    Array(60).fill(2),
 ];
 
+
 rawSprites.screenColors = ['transparent', 'red'];
+
+rawSprites.screenVertical = [
+    Array(60).fill(2),
+
+]
+
+rawSprites.screenVerticalColors = ['transparent', 'red'];

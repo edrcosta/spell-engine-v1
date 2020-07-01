@@ -1,0 +1,22 @@
+body{
+    background-color:#000;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.row{
+    height:1em;
+}
+
+.pixel{
+
+    height: 1em;
+    width: 1em;
+    float: left;
+    background: red;
+}
+.pixel:hover{
+    background-color: #fff;
+}
