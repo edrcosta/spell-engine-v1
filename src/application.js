@@ -1,4 +1,21 @@
-class GameSelector{
+class GameSelector
+{
+    customGameList;
+    selectMenuId = 'games-menu';
+    selectGameButtonId = 'load-game';
+
+    constructor(customGameList){
+        this.customGameList = customGameList;
+    }
+
+    renderSelectMenu(){ 
+        let gamesMenu = document.getElementById(this.selectMenuId);
+
+        this.customGameList.forEach(game => {
+            gamesMenu.innerHTML += `<option>${game.gameName}</option>`
+        });
+    }
+
     loadFile = (file) => {
         var js = document.createElement("script");
 
@@ -7,35 +24,35 @@ class GameSelector{
 
         document.body.appendChild(js);
     }
+    
+    loadGame(gameName){
+        if(gameName === 'no-game-selected') return false;
+        
+        this.customGameList.forEach((game) => {
+            if(game.gameName === gameName){
+                
+                game.files.forEach((file) => { this.loadFile(file) });
+                
+                document.getElementById(this.selectGameButtonId).style.display = 'none';
+                document.getElementById(this.selectMenuId).style.display = 'none';
+            }
+        });
+
+
+    }
 }
-
-
 
 (() => {
 
-    let gamesMenu = document.getElementById('games-menu');
-    let loadGameBtn = document.getElementById('load-game');
+    let gameSelector = new GameSelector(CustomGameListArray);
 
-    CustomGameListArray.forEach(game => {
-        gamesMenu.innerHTML += `<option>${game.gameName}</option>`
-    });
+    gameSelector.renderSelectMenu();
+    
+    gameSelector.loadGame(window.location.hash.replace('#', ''));
 
-    loadGameBtn.onclick = () => {
-
-        let gameSelector = new GameSelector();
-
-        if(gamesMenu.value === 'no-game-selected') return false;
-        
-        CustomGameListArray.forEach((game) => {
-            
-            if(game.gameName !== gamesMenu.value){
-                game.files.forEach((file) => {
-                    gameSelector.loadFile(file)
-                });
-            }
-
-            
-        
-        });
+    document.getElementById(gameSelector.selectGameButtonId).onclick = () => {
+        gameSelector.loadGame(
+            document.getElementById('games-menu').value
+        );
     };
 })()

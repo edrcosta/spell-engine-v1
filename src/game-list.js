@@ -1,9 +1,9 @@
 const CustomGameListArray = [
     {
-        "gameName": "debug",
+        "gameName": "stuart",
         "files" : [
-            "src/custom-games/debug/sprites.js",
-            "src/custom-games/debug/game.js"
+            "src/custom-games/stuart/sprites.js",
+            "src/custom-games/stuart/game.js"
         ]
     },
     {
