@@ -11,12 +11,21 @@ body{
 }
 
 .pixel{
-
     height: 1em;
     width: 1em;
     float: left;
-    background: red;
+    background: transparent;
 }
+
 .pixel:hover{
     background-color: #fff;
+}
+
+#controls{
+    width: auto;
+    height: 10em;
+    background-color:grey;
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
