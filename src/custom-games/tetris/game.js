@@ -10,7 +10,7 @@ class TetrisGame
     positionLeft = 34;
     
     //Bottom stack mapping
-    bottomMap = Array(15).fill(0);
+    bottomMap = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
     bottonMapPointer = 6;
     
     //peace control
@@ -47,6 +47,7 @@ class TetrisGame
         this.pixel.loadSprites(this.sprites);
 
         this.randStart = this.getRandPeace();
+        this.currentPeace = this.randStart;
     }
 
     //Reset the game to the start states
@@ -61,10 +62,10 @@ class TetrisGame
         this.positionTop = 0;
         this.positionLeft = 34;
         //Bottom stack mapping
-        this.bottomMap = Array(15).fill(0);
+        this.bottomMap = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
         this.bottonMapPointer = 6;
         //peace control
-        this.currentPeace ='';
+        this.currentPeace = this.randStart;
         this.firstPeace = true;
     }
 
@@ -80,16 +81,38 @@ class TetrisGame
         this.pixel.move(peace, this.positionTop, this.positionLeft);        
     }
     
+    counter = 0;
     mapPeaceBottonStack = () =>{
-        if(this.currentPeace.length > 0){
-            this.bottomMap[this.bottonMapPointer] += this.getPeaceSize(this.currentPeace);
+        
+        // if(this.bottomMap[this.bottonMapPointer] <= 0) return false; 
+
+        let size = 0;
+        let cumulativeFix = 0;
+        if(this.currentPeace === 'cube') size= 8;
+        if(this.currentPeace === 'weirdPeace') size = 8;
+        if(this.currentPeace === 'bar') size= 12;
+        if(this.currentPeace === 'l') size= 8;
+        if(this.currentPeace === 't') size= 8;
+
+
+        if(this.currentPeace === 'l'){
+            this.bottomMap[this.bottonMapPointer]+=4;
         }
+
+        // console.log(size);
+    // console.log(this.getPeaceSize(this.currentPeace));
+        // if(this.currentPeace.length > 0){
+            this.bottomMap[this.bottonMapPointer]-=size;
+            // this.bottomMap[this.bottonMapPointer-1]-=size;
+        // }
+
     }
 
     //Create a new peace when another get to the botton
     //fires when a peace gets to the botton and a new one has to be created 
     gameStepPeaceGetToThebotton = () => {
     
+        console.log(this.bottomMap);
         this.mapPeaceBottonStack();
         
         this.firstPeace = false;
@@ -100,25 +123,11 @@ class TetrisGame
         this.peaces.push(this.pixel.cloneSprite(this.currentPeace, 10, 10));
     }
 
-    getPeaceSize = (peace) => {
-        return 2;
-        // if(peace === 'cube') return 6;
-        // if(peace === 'weirdPeace') return 6;
-        // if(peace === 'bar') return 15;
-        // if(peace === 'l') return 11;
-        // if(peace === 't') return 6;
-        // else throw 'invalid form::' + peace;
-    }
-
     //game logic for peace droping
     gameStepDropPeaces = () => {
-        this.positionTop+= 5;
-
-        console.log(this.bottomMap)
-
-        const botton = 60 - this.bottomMap[this.bottonMapPointer];
-
-        if(this.positionTop <= botton){
+        this.positionTop+= 4;
+        console.log(this.positionTop);
+        if(this.positionTop <= this.bottomMap[this.bottonMapPointer]){
             this.gameStepDropPeace();
         }else{
             this.gameStepPeaceGetToThebotton();
