@@ -1,3 +1,7 @@
+/**
+ * @todo fix this bottom problem coordenates are inverted this make crazy to catesian adpt any calculation
+ */
+
 class TetrisGame
 {
     //engine
@@ -26,6 +30,9 @@ class TetrisGame
         'bar',
     ];
     
+    /**
+     * store game sprites
+     */
     sprites = {
         weirdPeace : { frames : [rawSprites.weirdPeace], colors : rawSprites.weirdPeaceColors},
         cube : { frames : [rawSprites.cube], colors : rawSprites.cubeColors},
@@ -81,31 +88,36 @@ class TetrisGame
         this.pixel.move(peace, this.positionTop, this.positionLeft);        
     }
     
+    //this array will map the bottom of the game with the cumulative effect of the peaces dropping
     counter = 0;
     mapPeaceBottonStack = () =>{
-        
-        // if(this.bottomMap[this.bottonMapPointer] <= 0) return false; 
-
+        /**
+         * 
+         * @todo fix #cartesian inversion bug chrome
+         */
         let size = 0;
         let cumulativeFix = 0;
-        if(this.currentPeace === 'cube') size= 8;
-        if(this.currentPeace === 'weirdPeace') size = 8;
-        if(this.currentPeace === 'bar') size= 12;
-        if(this.currentPeace === 'l') size= 8;
-        if(this.currentPeace === 't') size= 8;
-
-
-        if(this.currentPeace === 'l'){
-            this.bottomMap[this.bottonMapPointer]+=4;
+        if(this.currentPeace === 'cube') {
+            size = 2;
         }
 
-        // console.log(size);
-    // console.log(this.getPeaceSize(this.currentPeace));
-        // if(this.currentPeace.length > 0){
-            this.bottomMap[this.bottonMapPointer]-=size;
-            // this.bottomMap[this.bottonMapPointer-1]-=size;
-        // }
+        if(this.currentPeace === 'weirdPeace') {
+            size = 2;
+        }
 
+        if(this.currentPeace === 'bar') {
+            size = 4;
+        }
+
+        if(this.currentPeace === 'l') {
+            size = 2;
+        }
+        
+        if(this.currentPeace === 't') {
+            size = 2;
+        }
+
+        this.bottomMap[this.bottonMapPointer] += size;
     }
 
     //Create a new peace when another get to the botton

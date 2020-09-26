@@ -87,7 +87,6 @@ rawSprites.screenColors = ['transparent', 'red'];
 
 rawSprites.screenVertical = [
     Array(60).fill(2),
-
 ]
 
 rawSprites.screenVerticalColors = ['transparent', 'red'];
