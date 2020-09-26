@@ -11,7 +11,8 @@ const CustomGameListArray = [
         "gameName": "tetris",
         "files" : [
             "src/custom-games/tetris/sprites.js",
-            "src/custom-games/tetris/game.js"
+            "src/custom-games/tetris/game.js",
+            "src/custom-games/tetris/index.js"
         ]
     }
 ];

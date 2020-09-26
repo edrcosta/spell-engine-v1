@@ -30,9 +30,7 @@ class TetrisGame
         'bar',
     ];
     
-    /**
-     * store game sprites
-     */
+    // store game sprites
     sprites = {
         weirdPeace : { frames : [rawSprites.weirdPeace], colors : rawSprites.weirdPeaceColors},
         cube : { frames : [rawSprites.cube], colors : rawSprites.cubeColors},
@@ -146,6 +144,7 @@ class TetrisGame
         }
     }
 
+    //literraly the game loop... run each clock cycle
     gameLoop = () => {
 
         this.gameStepDropPeaces();
@@ -161,13 +160,9 @@ class TetrisGame
         }
     }
 
+    //runs once when the game starts...
     gameStart = () => {
         this.game.setGameLoop(this.gameLoop);
         this.game.loopStart();
     }
 }
-
-let tetris = new TetrisGame();
-
-tetris.reset();
-tetris.gameStart();
