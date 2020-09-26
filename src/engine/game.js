@@ -39,6 +39,7 @@ class Game {
         this.gameLoopCallback = callback;
     }
 
+    //initialize game loop
     loopStart = () => {
         
         this.keyboardDetection();

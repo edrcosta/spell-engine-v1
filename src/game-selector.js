@@ -1,3 +1,9 @@
+/**
+ * This is a game loader
+ * 
+ * just a simple way to load the games
+ * 
+ */
 class GameSelector
 {
     customGameList;
@@ -30,6 +36,7 @@ class GameSelector
         
         this.customGameList.forEach((game) => {
             if(game.gameName === gameName){
+                window.location.hash = gameName;
                 
                 game.files.forEach((file) => { this.loadFile(file) });
                 

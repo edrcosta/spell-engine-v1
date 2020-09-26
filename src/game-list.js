@@ -1,3 +1,4 @@
+//this stores the entire game list with each game asset once a game is loaded only f5 reset to choose again
 const CustomGameListArray = [
     {
         "gameName": "stuart",
