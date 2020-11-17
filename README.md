@@ -1,4 +1,4 @@
-# Pixer Simple Game engine 
+# Spell game engine v1
 
 this is a simple 2d canvas game engine made for fun and study
 
